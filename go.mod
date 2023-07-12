@@ -32,7 +32,7 @@ require (
 	github.com/riobard/go-bloom v0.0.0-20200614022211-cdc8013cb5b3 // indirect
 	github.com/sagernet/sing v0.2.7 // indirect
 	github.com/sagernet/sing-shadowsocks v0.2.2 // indirect
-	github.com/sagernet/wireguard-go v0.0.0-20230420044414-a7bac1754e77 // indirect
+	github.com/sagernet/wireguard-go v0.0.0-20221116151939-c99467f53f2c // indirect
 	github.com/seiflotfy/cuckoofilter v0.0.0-20220411075957-e3b120b3f5fb // indirect
 	github.com/v2fly/ss-bloomring v0.0.0-20210312155135-28617310f63e // indirect
 	github.com/xtls/reality v0.0.0-20230613075828-e07c3b04b983 // indirect
@@ -48,6 +48,6 @@ require (
 	google.golang.org/grpc v1.56.2 // indirect
 	google.golang.org/protobuf v1.31.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
-	gvisor.dev/gvisor v0.0.0-20230711222227-f9219588c685 // indirect
+	gvisor.dev/gvisor v0.0.0-20220901235040-6ca97ef2ce1c // indirect
 	lukechampine.com/blake3 v1.2.1 // indirect
 )
