@@ -16,9 +16,9 @@ import (
 
 	mobasset "golang.org/x/mobile/asset"
 
-	v2core "github.com/xtls/xray-core/core"
 	v2net "github.com/xtls/xray-core/common/net"
 	v2filesystem "github.com/xtls/xray-core/common/platform/filesystem"
+	v2core "github.com/xtls/xray-core/core"
 	v2stats "github.com/xtls/xray-core/features/stats"
 	v2serial "github.com/xtls/xray-core/infra/conf/serial"
 	_ "github.com/xtls/xray-core/main/distro/all"
@@ -32,7 +32,8 @@ const (
 	v2Asset = "xray.location.asset"
 )
 
-/*V2RayPoint V2Ray Point Server
+/*
+V2RayPoint V2Ray Point Server
 This is territory of Go, so no getter and setters!
 */
 type V2RayPoint struct {
@@ -77,7 +78,7 @@ func (v *V2RayPoint) RunLoop(prefIPv6 bool) (err error) {
 				// shutdown VPNService if server name can not reolved
 				if !v.dialer.IsVServerReady() {
 					log.Println("vServer cannot resolved, shutdown")
-					v.StopLoop()
+					_ = v.StopLoop()
 					v.SupportSet.Shutdown()
 				}
 
@@ -114,8 +115,8 @@ func (v *V2RayPoint) StopLoop() (err error) {
 	return
 }
 
-//Delegate Funcation
-func (v V2RayPoint) QueryStats(tag string, direct string) int64 {
+// QueryStats Delegate Function
+func (v *V2RayPoint) QueryStats(tag string, direct string) int64 {
 	if v.statsManager == nil {
 		return 0
 	}
@@ -128,7 +129,7 @@ func (v V2RayPoint) QueryStats(tag string, direct string) int64 {
 
 func (v *V2RayPoint) shutdownInit() {
 	v.IsRunning = false
-	v.Vpoint.Close()
+	_ = v.Vpoint.Close()
 	v.Vpoint = nil
 	v.statsManager = nil
 }
@@ -170,7 +171,7 @@ func (v *V2RayPoint) MeasureDelay() (int64, error) {
 	go func() {
 		select {
 		case <-v.closeChan:
-			// cancel request if close called during meansure
+			// cancel request if close called during measure
 			cancel()
 		case <-ctx.Done():
 		}
@@ -184,10 +185,10 @@ func InitV2Env(envPath string) {
 	//Initialize asset API, Since Raymond Will not let notify the asset location inside Process,
 	//We need to set location outside V2Ray
 	if len(envPath) > 0 {
-		os.Setenv(v2Asset, envPath)
+		_ = os.Setenv(v2Asset, envPath)
 	}
 
-	//Now we handle read, fallback to gomobile asset (apk assets)
+	//Now we handle read, fallback to goMobile asset (apk assets)
 	v2filesystem.NewFileReader = func(path string) (io.ReadCloser, error) {
 		if _, err := os.Stat(path); os.IsNotExist(err) {
 			_, file := filepath.Split(path)
@@ -197,7 +198,7 @@ func InitV2Env(envPath string) {
 	}
 }
 
-//Delegate Funcation
+// TestConfig Delegate Function
 func TestConfig(ConfigureFileContent string) error {
 	_, err := v2serial.LoadJSONConfig(strings.NewReader(ConfigureFileContent))
 	return err
@@ -220,16 +221,16 @@ func MeasureOutboundDelay(ConfigureFileContent string) (int64, error) {
 		return -1, err
 	}
 
-	inst.Start()
+	_ = inst.Start()
 	delay, err := measureInstDelay(context.Background(), inst)
-	inst.Close()
+	_ = inst.Close()
 	return delay, err
 }
 
 /*NewV2RayPoint new V2RayPoint*/
 func NewV2RayPoint(s V2RayVPNServiceSupportsSet, adns bool) *V2RayPoint {
 	// inject our own log writer
-	v2applog.RegisterHandlerCreator(v2applog.LogType_Console,
+	_ = v2applog.RegisterHandlerCreator(v2applog.LogType_Console,
 		func(lt v2applog.LogType,
 			options v2applog.HandlerCreatorOptions) (v2commlog.Handler, error) {
 			return v2commlog.NewLogger(createStdoutLogWriter()), nil
@@ -244,11 +245,12 @@ func NewV2RayPoint(s V2RayVPNServiceSupportsSet, adns bool) *V2RayPoint {
 	}
 }
 
-/*CheckVersionX string
-This func will return libv2ray binding version and V2Ray version used.
+/*
+CheckVersionX string
+This func will return libV2ray binding version and V2Ray version used.
 */
 func CheckVersionX() string {
-	var version  = 24
+	var version = 24
 	return fmt.Sprintf("Lib v%d, Xray-core v%s", version, v2core.Version())
 }
 
@@ -283,7 +285,7 @@ func measureInstDelay(ctx context.Context, inst *v2core.Instance) (int64, error)
 	if resp.StatusCode != http.StatusNoContent {
 		return -1, fmt.Errorf("status != 204: %s", resp.Status)
 	}
-	resp.Body.Close()
+	_ = resp.Body.Close()
 	return time.Since(start).Milliseconds(), nil
 }
 

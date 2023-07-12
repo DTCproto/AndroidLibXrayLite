@@ -10,11 +10,11 @@ import (
 	"sync"
 	"time"
 
-	"golang.org/x/sys/unix"
 	v2net "github.com/xtls/xray-core/common/net"
 	"github.com/xtls/xray-core/features/dns"
 	"github.com/xtls/xray-core/features/outbound"
 	v2internet "github.com/xtls/xray-core/transport/internet"
+	"golang.org/x/sys/unix"
 )
 
 type protectSet interface {
@@ -138,24 +138,24 @@ func (d *ProtectedDialer) lookupAddr(addr string) (*resolved, error) {
 	IPs := make([]net.IP, 0)
 	//ipv6 is prefer, append ipv6 then ipv4
 	//ipv6 is not prefer, append ipv4 then ipv6
-	if(d.preferIPv6) {
+	if d.preferIPv6 {
 		for _, ia := range addrs {
-			if(ia.IP.To4() == nil) {
-				IPs = append(IPs, ia.IP)			 
+			if ia.IP.To4() == nil {
+				IPs = append(IPs, ia.IP)
 			}
-		}		
-	}
-	for _, ia := range addrs {
-		if(ia.IP.To4() != nil) {
-			IPs = append(IPs, ia.IP)	
 		}
 	}
-	if(!d.preferIPv6) {
+	for _, ia := range addrs {
+		if ia.IP.To4() != nil {
+			IPs = append(IPs, ia.IP)
+		}
+	}
+	if !d.preferIPv6 {
 		for _, ia := range addrs {
-			if(ia.IP.To4() == nil) {
-				IPs = append(IPs, ia.IP)			 
+			if ia.IP.To4() == nil {
+				IPs = append(IPs, ia.IP)
 			}
-		}		
+		}
 	}
 
 	rs := &resolved{
@@ -220,7 +220,7 @@ func (d *ProtectedDialer) Init(_ dns.Client, _ outbound.Manager) {
 
 // Dial exported as the protected dial method
 func (d *ProtectedDialer) Dial(ctx context.Context,
-	src v2net.Address, dest v2net.Destination, sockopt *v2internet.SocketConfig) (net.Conn, error) {
+	_ v2net.Address, dest v2net.Destination, _ *v2internet.SocketConfig) (net.Conn, error) {
 
 	network := dest.Network.SystemString()
 	Address := dest.NetAddr()
@@ -276,9 +276,14 @@ func (d *ProtectedDialer) Dial(ctx context.Context,
 	return d.fdConn(ctx, resolved.IPs[0], resolved.Port, fd)
 }
 
-func (d *ProtectedDialer) fdConn(ctx context.Context, ip net.IP, port int, fd int) (net.Conn, error) {
+func (d *ProtectedDialer) fdConn(_ context.Context, ip net.IP, port int, fd int) (net.Conn, error) {
 
-	defer unix.Close(fd)
+	defer func(fd int) {
+		err := unix.Close(fd)
+		if err != nil {
+
+		}
+	}(fd)
 
 	// call android VPN service to "protect" the fd connecting straight out
 	if !d.Protect(fd) {
@@ -289,7 +294,7 @@ func (d *ProtectedDialer) fdConn(ctx context.Context, ip net.IP, port int, fd in
 	sa := &unix.SockaddrInet6{
 		Port: port,
 	}
-	copy(sa.Addr[:], ip)
+	copy(sa.Addr[:], ip.To16())
 
 	if err := unix.Connect(fd, sa); err != nil {
 		log.Printf("fdConn unix.Connect err, Close Fd: %d Err: %v", fd, err)
@@ -302,7 +307,12 @@ func (d *ProtectedDialer) fdConn(ctx context.Context, ip net.IP, port int, fd in
 		return nil, errors.New("fdConn fd invalid")
 	}
 
-	defer file.Close()
+	defer func(file *os.File) {
+		err := file.Close()
+		if err != nil {
+
+		}
+	}(file)
 	//Closing conn does not affect file, and closing file does not affect conn.
 	conn, err := net.FileConn(file)
 	if err != nil {

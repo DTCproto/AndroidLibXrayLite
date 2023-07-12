@@ -85,10 +85,13 @@ func TestProtectedDialer_Dial(t *testing.T) {
 					return
 				}
 				_host, _, _ := net.SplitHostPort(tt.name)
-				fmt.Fprintf(conn, fmt.Sprintf("GET / HTTP/1.1\r\nHost: %s\r\n\r\n", _host))
+				_, _ = fmt.Fprintf(conn, fmt.Sprintf("GET / HTTP/1.1\r\nHost: %s\r\n\r\n", _host))
+				if err != nil {
+					return
+				}
 				status, err := bufio.NewReader(conn).ReadString('\n')
 				t.Logf("%#v, %#v\n", status, err)
-				conn.Close()
+				_ = conn.Close()
 			}
 
 			for n := 0; n < 3; n++ {
