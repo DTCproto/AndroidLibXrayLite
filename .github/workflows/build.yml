@@ -58,8 +58,20 @@ jobs:
         sed -i 's/-XX:MaxPermSize=512m/ /' ${{ github.workspace }}/build/v2rayNG/V2rayNG/gradle.properties
         ./gradlew assembleRelease
     
-    - name: Upload APK
+    - name: Upload APK 1
       uses: actions/upload-artifact@v3
       with:
-        name: apk
-        path: ${{ github.workspace }}/build/v2rayNG/V2rayNG/app/build/outputs/apk/**/*.apk
+        name: dev_apks
+        path: 
+          ${{ github.workspace }}/build/v2rayNG/V2rayNG/app/build/outputs/apk/dev/**/*.apk
+          !${{ github.workspace }}/**/*null.apk
+          !${{ github.workspace }}/**/*x86.apk
+
+    - name: Upload APK 2
+      uses: actions/upload-artifact@v3
+      with:
+        name: prod_apks
+        path: 
+          ${{ github.workspace }}/build/v2rayNG/V2rayNG/app/build/outputs/apk/prod/**/*.apk
+          !${{ github.workspace }}/**/*null.apk
+          !${{ github.workspace }}/**/*x86.apk
