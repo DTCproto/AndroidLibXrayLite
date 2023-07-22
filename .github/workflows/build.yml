@@ -39,17 +39,19 @@ jobs:
     - name: sdkmanager list
       run: sdkmanager --list
     
-    - name: Build dependencies
+    - name: git clone 
       run: |
         mkdir ${{ github.workspace }}/build
         cd ${{ github.workspace }}/build
-        git clone --depth=1 -b main https://github.com/DTCproto/AndroidLibXrayLite.git
         git clone --depth=1 -b master https://github.com/2dust/v2rayNG.git
-        cd AndroidLibXrayLite
+
+    - name: Build aar
+      run: |
+        cd ${{ github.workspace }}
         gomobile init
         go mod tidy -v
         gomobile bind -v -androidapi 19 -ldflags='-s -w' ./
-        cp *.aar ../v2rayNG/V2rayNG/app/libs/
+        cp *.aar ${{ github.workspace }}/build/v2rayNG/V2rayNG/app/libs/
 
     - name: Build APK
       run: |
@@ -58,20 +60,27 @@ jobs:
         sed -i 's/-XX:MaxPermSize=512m/ /' ${{ github.workspace }}/build/v2rayNG/V2rayNG/gradle.properties
         ./gradlew assembleRelease
     
-    - name: Upload APK 1
+    - name: Upload aar
+      uses: actions/upload-artifact@v3
+      with:
+        name: aar
+        path: |
+          ${{ github.workspace }}/*.aar
+    
+    - name: Upload dev apk
       uses: actions/upload-artifact@v3
       with:
         name: dev_apks
-        path: 
+        path: |
           ${{ github.workspace }}/build/v2rayNG/V2rayNG/app/build/outputs/apk/dev/**/*.apk
           !${{ github.workspace }}/**/*null.apk
           !${{ github.workspace }}/**/*x86.apk
 
-    - name: Upload APK 2
+    - name: Upload prod apk
       uses: actions/upload-artifact@v3
       with:
         name: prod_apks
-        path: 
+        path: |
           ${{ github.workspace }}/build/v2rayNG/V2rayNG/app/build/outputs/apk/prod/**/*.apk
           !${{ github.workspace }}/**/*null.apk
           !${{ github.workspace }}/**/*x86.apk
