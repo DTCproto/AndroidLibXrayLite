@@ -3,7 +3,7 @@ module github.com/DTCproto/AndroidLibXrayLite
 go 1.19
 
 require (
-	github.com/xtls/xray-core v1.8.3
+	github.com/xtls/xray-core v1.8.4-0.20230721220625-51769fdde1ca
 	golang.org/x/mobile v0.0.0-20230531173138-3c911d8e3eda
 	golang.org/x/sys v0.10.0
 )
@@ -27,8 +27,8 @@ require (
 	github.com/pires/go-proxyproto v0.7.0 // indirect
 	github.com/quic-go/qtls-go1-19 v0.3.2 // indirect
 	github.com/quic-go/qtls-go1-20 v0.3.0 // indirect
-	github.com/quic-go/quic-go v0.36.1 // indirect
-	github.com/refraction-networking/utls v1.3.2 // indirect
+	github.com/quic-go/quic-go v0.36.2 // indirect
+	github.com/refraction-networking/utls v1.3.3 // indirect
 	github.com/riobard/go-bloom v0.0.0-20200614022211-cdc8013cb5b3 // indirect
 	github.com/sagernet/sing v0.2.7 // indirect
 	github.com/sagernet/sing-shadowsocks v0.2.2 // indirect
