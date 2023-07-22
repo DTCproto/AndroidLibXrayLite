@@ -35,8 +35,6 @@ jobs:
     
     - name: Setup Android SDK
       uses: android-actions/setup-android@v2
-      with:
-        ndk-version: '25.2.9519653'
     
     - name: sdkmanager list
       run: sdkmanager --list
@@ -61,7 +59,7 @@ jobs:
         ./gradlew assembleRelease
     
     - name: Upload APK
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: apk
-        path: ${{ github.workspace }}/build/v2rayNG/V2rayNG/app/build/outputs/apk/dev/**/*
+        path: ${{ github.workspace }}/build/v2rayNG/V2rayNG/app/build/outputs/apk/**/*.apk
