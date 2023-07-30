@@ -46,6 +46,13 @@ jobs:
         cd ${{ github.workspace }}/build
         git clone --depth=1 -b master https://github.com/2dust/v2rayNG.git
 
+    - name: edit apk source code
+      run: |
+        cd ${{ github.workspace }}/build/v2rayNG/V2rayNG
+        chmod 755 *
+        sed -i 's/-XX:MaxPermSize=512m/ /' ${{ github.workspace }}/build/v2rayNG/V2rayNG/gradle.properties
+        cat ${{ github.workspace }}/ActionsBuild/build.ext.gradle >> ${{ github.workspace }}/build/v2rayNG/V2rayNG/app/build.gradle
+
     - name: Build aar
       run: |
         cd ${{ github.workspace }}
@@ -57,8 +64,6 @@ jobs:
     - name: Build APK
       run: |
         cd ${{ github.workspace }}/build/v2rayNG/V2rayNG
-        chmod 777 *
-        sed -i 's/-XX:MaxPermSize=512m/ /' ${{ github.workspace }}/build/v2rayNG/V2rayNG/gradle.properties
         ./gradlew assembleRelease
     
     - name: Upload aar
@@ -77,11 +82,11 @@ jobs:
           !${{ github.workspace }}/**/*null.apk
           !${{ github.workspace }}/**/*x86.apk
 
-    - name: Upload prod apk
+    - name: Upload release apk
       uses: actions/upload-artifact@v3
       with:
-        name: prod_apks
+        name: release_apks
         path: |
-          ${{ github.workspace }}/build/v2rayNG/V2rayNG/app/build/outputs/apk/prod/**/*.apk
+          ${{ github.workspace }}/build/v2rayNG/V2rayNG/app/build/outputs/apk/release/**/*.apk
           !${{ github.workspace }}/**/*null.apk
           !${{ github.workspace }}/**/*x86.apk
