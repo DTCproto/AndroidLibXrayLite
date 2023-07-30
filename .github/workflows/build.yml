@@ -89,7 +89,7 @@ jobs:
       with:
         name: release_apks
         path: |
-        #  ${{ github.workspace }}/build/v2rayNG/V2rayNG/app/build/outputs/apk/release/**/*.apk
           ${{ github.workspace }}/build/v2rayNG/V2rayNG/app/build/outputs/apk/prod/**/*.apk
           !${{ github.workspace }}/**/*null.apk
           !${{ github.workspace }}/**/*x86.apk
+        # ${{ github.workspace }}/build/v2rayNG/V2rayNG/app/build/outputs/apk/release/**/*.apk
