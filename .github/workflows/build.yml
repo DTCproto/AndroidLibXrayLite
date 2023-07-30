@@ -37,7 +37,8 @@ jobs:
       uses: android-actions/setup-android@v2
     
     - name: sdkmanager list
-      run: sdkmanager --list
+      run: |
+        sdkmanager --list
     
     - name: git clone 
       run: |
