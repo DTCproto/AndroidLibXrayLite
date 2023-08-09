@@ -29,15 +29,14 @@ require (
 	github.com/quic-go/quic-go v0.37.3 // indirect
 	github.com/refraction-networking/utls v1.3.3 // indirect
 	github.com/riobard/go-bloom v0.0.0-20200614022211-cdc8013cb5b3 // indirect
-	github.com/sagernet/sing v0.2.7 // indirect
+	github.com/sagernet/sing v0.2.10-0.20230807080248-4db0062caa0a // indirect
 	github.com/sagernet/sing-shadowsocks v0.2.2 // indirect
-	github.com/sagernet/wireguard-go v0.0.0-20221116151939-c99467f53f2c // indirect
+	github.com/sagernet/wireguard-go v0.0.0-20230807125731-5d4a7ef2dc5f // indirect
 	github.com/seiflotfy/cuckoofilter v0.0.0-20220411075957-e3b120b3f5fb // indirect
 	github.com/v2fly/ss-bloomring v0.0.0-20210312155135-28617310f63e // indirect
 	github.com/xtls/reality v0.0.0-20230613075828-e07c3b04b983 // indirect
-	go.uber.org/atomic v1.11.0 // indirect
 	golang.org/x/crypto v0.12.0 // indirect
-	golang.org/x/exp v0.0.0-20230711153332-06a737ee72cb // indirect
+	golang.org/x/exp v0.0.0-20230725093048-515e97ebf090 // indirect
 	golang.org/x/mod v0.12.0 // indirect
 	golang.org/x/net v0.14.0 // indirect
 	golang.org/x/text v0.12.0 // indirect
@@ -47,6 +46,8 @@ require (
 	google.golang.org/grpc v1.57.0 // indirect
 	google.golang.org/protobuf v1.31.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
-	gvisor.dev/gvisor v0.0.0-20220901235040-6ca97ef2ce1c // indirect
+	gvisor.dev/gvisor v0.0.0-20230808193359-821459c94264 // indirect
 	lukechampine.com/blake3 v1.2.1 // indirect
 )
+
+replace github.com/xtls/xray-core v1.8.4-0.20230809141701-d11826ee542b => ./ActionsBuild/Xray-core
