@@ -34,7 +34,6 @@ type netTun struct {
 	mtu            int
 	dnsClient      dns.Client
 	hasV4, hasV6   bool
-	batchSize      int
 }
 
 type Net netTun
@@ -52,7 +51,6 @@ func CreateNetTUN(localAddresses []netip.Addr, dnsClient dns.Client, mtu int) (t
 		incomingPacket: make(chan *buffer.View),
 		dnsClient:      dnsClient,
 		mtu:            mtu,
-		batchSize:      1,
 	}
 	dev.ep.AddNotify(dev)
 	tcpipErr := dev.stack.CreateNIC(1, dev.ep)
@@ -99,42 +97,34 @@ func (tun *netTun) File() *os.File {
 	return nil
 }
 
-func (tun *netTun) Events() <-chan tun.Event {
+func (tun *netTun) Events() chan tun.Event {
 	return tun.events
 }
 
-func (tun *netTun) Read(bufs [][]byte, sizes []int, offset int) (int, error) {
+func (tun *netTun) Read(buf []byte, offset int) (int, error) {
 	view, ok := <-tun.incomingPacket
 	if !ok {
 		return 0, os.ErrClosed
 	}
-	read, err := view.Read(bufs[0][offset:])
-	if err != nil {
-		return 0, err
-	}
-	sizes[0] = read
-	return 1, nil
+
+	return view.Read(buf[offset:])
 }
 
-func (tun *netTun) Write(bufs [][]byte, offset int) (int, error) {
-	var count = 0
-	for _, buf := range bufs {
-		packet := buf[offset:]
-		if len(packet) == 0 {
-			continue
-		}
-
-		pkb := stack.NewPacketBuffer(stack.PacketBufferOptions{Payload: buffer.MakeWithData(packet)})
-		switch packet[0] >> 4 {
-		case 4:
-			tun.ep.InjectInbound(header.IPv4ProtocolNumber, pkb)
-		case 6:
-			tun.ep.InjectInbound(header.IPv6ProtocolNumber, pkb)
-		}
-
-		count++
+func (tun *netTun) Write(buf []byte, offset int) (int, error) {
+	packet := buf[offset:]
+	if len(packet) == 0 {
+		return 0, nil
 	}
-	return count, nil
+
+	pkb := stack.NewPacketBuffer(stack.PacketBufferOptions{Payload: buffer.MakeWithData(packet)})
+	switch packet[0] >> 4 {
+	case 4:
+		tun.ep.InjectInbound(header.IPv4ProtocolNumber, pkb)
+	case 6:
+		tun.ep.InjectInbound(header.IPv6ProtocolNumber, pkb)
+	}
+
+	return len(buf), nil
 }
 
 func (tun *netTun) WriteNotify() {
@@ -171,10 +161,6 @@ func (tun *netTun) Close() error {
 
 func (tun *netTun) MTU() (int, error) {
 	return tun.mtu, nil
-}
-
-func (tun *netTun) BatchSize() int {
-	return tun.batchSize
 }
 
 func convertToFullAddr(endpoint netip.AddrPort) (tcpip.FullAddress, tcpip.NetworkProtocolNumber) {
