@@ -55,6 +55,14 @@ jobs:
       #  cat ${{ github.workspace }}/ActionsBuild/build.ext.gradle > ${{ github.workspace }}/build/v2rayNG/V2rayNG/app/build.gradle
       #  sed -i 's/applicationId "com.v2ray.ang"/applicationId "com.v2ray.ang.dev"/' ${{ github.workspace }}/build/v2rayNG/V2rayNG/app/build.gradle
 
+    - name: use git remote repo xray
+      run: |
+        cd ${{ github.workspace }}/ActionsBuild/
+        rm -rf Xray-core
+        git clone --depth=1 -b main https://github.com/XTLS/Xray-core.git
+        cd ${{ github.workspace }}/ActionsBuild/Xray-core
+        git rev-parse --short HEAD | xargs -I '{}' sed -i 's/d616f61/{}/' ${{ github.workspace }}/libv2ray_main.go
+
     - name: Build xray
       run: |
         cd ${{ github.workspace }}/ActionsBuild/Xray-core

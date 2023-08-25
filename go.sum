@@ -108,6 +108,7 @@ github.com/prometheus/common v0.0.0-20180801064454-c7de2306084e/go.mod h1:daVV7q
 github.com/prometheus/procfs v0.0.0-20180725123919-05ee40e3a273/go.mod h1:c3At6R/oaqEKCNdg8wHV1ftS6bRYblBhIjjI8uT2IGk=
 github.com/quic-go/qtls-go1-20 v0.3.1 h1:O4BLOM3hwfVF3AcktIylQXyl7Yi2iBNVy5QsV+ySxbg=
 github.com/quic-go/qtls-go1-20 v0.3.1/go.mod h1:X9Nh97ZL80Z+bX/gUXMbipO6OxdiDi58b/fMC9mAL+k=
+github.com/quic-go/qtls-go1-20 v0.3.2 h1:rRgN3WfnKbyik4dBV8A6girlJVxGand/d+jVKbQq5GI=
 github.com/quic-go/quic-go v0.37.3 h1:pkHH3xaMNUNAh6OtgEV/0K6Fz+YIJXhPzgd/ShiRDm4=
 github.com/quic-go/quic-go v0.37.3/go.mod h1:YsbH1r4mSHPJcLF4k4zruUkLBqctEMBDR6VPvcYjIsU=
 github.com/refraction-networking/utls v1.3.3 h1:f/TBLX7KBciRyFH3bwupp+CE4fzoYKCirhdRcC490sw=
@@ -159,6 +160,8 @@ github.com/viant/assertly v0.4.8/go.mod h1:aGifi++jvCrUaklKEKT0BU95igDNaqkvz+49u
 github.com/viant/toolbox v0.24.0/go.mod h1:OxMCG57V0PXuIP2HNQrtJf2CjqdmbrOx5EkMILuUhzM=
 github.com/xtls/reality v0.0.0-20230613075828-e07c3b04b983 h1:AMyzgjkh54WocjQSlCnT1LhDc/BKiUqtNOv40AkpURs=
 github.com/xtls/reality v0.0.0-20230613075828-e07c3b04b983/go.mod h1:rkuAY1S9F8eI8gDiPDYvACE8e2uwkyg8qoOTuwWov7Y=
+github.com/xtls/xray-core v1.8.4-0.20230824151731-d616f6160df2 h1:llOt+gfHPF4L0ddULT1YDvLUYFoXFpI71AXZeXUxpf8=
+github.com/xtls/xray-core v1.8.4-0.20230824151731-d616f6160df2/go.mod h1:8cwNsdNWOU+qnnVumX2VLSjA9XCOCxuyoPy7Rj75z7o=
 github.com/yuin/goldmark v1.3.5/go.mod h1:mwnBkeHKe2W/ZEtQ+71ViKU8L12m81fl3OWwC1Zlc8k=
 go.opencensus.io v0.18.0/go.mod h1:vKdFvxhtzZ9onBp9VKHK8z/sRpBMnKAsufL7wlDrCOA=
 go.uber.org/atomic v1.10.0 h1:9qC72Qh0+3MqyJbAn8YU5xVq1frD8bn3JtD2oXtafVQ=
@@ -279,6 +282,7 @@ gopkg.in/yaml.v3 v3.0.1 h1:fxVm/GzAzEWqLHuvctI91KS9hhNmmWOoWu0XTYJS7CA=
 grpc.go4.org v0.0.0-20170609214715-11d0a25b4919/go.mod h1:77eQGdRu53HpSqPFJFmuJdjuHRquDANNeA4x7B8WQ9o=
 gvisor.dev/gvisor v0.0.0-20230808193849-9b07e8e75e9d h1:6r3xdrkwJ+1UWVkAq/Vqfm+jkL3mZQdC3JreCTefcUQ=
 gvisor.dev/gvisor v0.0.0-20230808193849-9b07e8e75e9d/go.mod h1:lYEMhXbxgudVhALYsMQrBaUAjM3NMinh8mKL1CJv7rc=
+gvisor.dev/gvisor v0.0.0-20230822212503-5bf4e5f98744 h1:tE44CyJgxEGzoPtHs9GI7ddKdgEGCREQBP54AmaVM+I=
 honnef.co/go/tools v0.0.0-20180728063816-88497007e858/go.mod h1:rf3lG4BRIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=
 honnef.co/go/tools v0.0.0-20190102054323-c2f93a96b099/go.mod h1:rf3lG4BRIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=
 honnef.co/go/tools v0.0.0-20190106161140-3f1c8253044a/go.mod h1:rf3lG4BRIbNafJWhAfAdb/ePZxsR/4RtNHQocxwk9r4=
