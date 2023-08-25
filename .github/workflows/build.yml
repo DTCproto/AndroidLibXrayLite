@@ -61,7 +61,7 @@ jobs:
         rm -rf Xray-core
         git clone --depth=1 -b main https://github.com/XTLS/Xray-core.git
         cd ${{ github.workspace }}/ActionsBuild/Xray-core
-        git rev-parse --short HEAD | xargs -I '{}' sed -i 's/d616f61/{}/' ${{ github.workspace }}/libv2ray_main.go
+        git rev-parse --short HEAD | xargs -I '{}' sed -i 's/fde0001/{}/' ${{ github.workspace }}/libv2ray_main.go
 
     - name: Build xray
       run: |
