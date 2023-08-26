@@ -1,9 +1,9 @@
 # AndroidLibXrayLite
 
 ## Build requirements
-* JDK
+* JDK(temurin)
 * Android SDK
-* Go
+* Go(1.21+)
 * gomobile
 
 ## Build instructions
