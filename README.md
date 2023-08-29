@@ -5,6 +5,7 @@
 * Android SDK
 * Go(1.21+)
 * gomobile
+* Xray-core(1.8.4)
 
 ## Build instructions
 1. `git clone [repo] && cd AndroidLibXrayLite`
