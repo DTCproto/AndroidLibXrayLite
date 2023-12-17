@@ -220,7 +220,7 @@ func (d *ProtectedDialer) Init(_ dns.Client, _ outbound.Manager) {
 
 // Dial exported as the protected dial method
 func (d *ProtectedDialer) Dial(ctx context.Context,
-	_ v2net.Address, dest v2net.Destination, _ *v2internet.SocketConfig) (net.Conn, error) {
+	src v2net.Address, dest v2net.Destination, sockopt *v2internet.SocketConfig) (net.Conn, error) {
 
 	network := dest.Network.SystemString()
 	Address := dest.NetAddr()
@@ -276,14 +276,9 @@ func (d *ProtectedDialer) Dial(ctx context.Context,
 	return d.fdConn(ctx, resolved.IPs[0], resolved.Port, fd)
 }
 
-func (d *ProtectedDialer) fdConn(_ context.Context, ip net.IP, port int, fd int) (net.Conn, error) {
+func (d *ProtectedDialer) fdConn(ctx context.Context, ip net.IP, port int, fd int) (net.Conn, error) {
 
-	defer func(fd int) {
-		err := unix.Close(fd)
-		if err != nil {
-
-		}
-	}(fd)
+	defer unix.Close(fd)
 
 	// call android VPN service to "protect" the fd connecting straight out
 	if !d.Protect(fd) {
@@ -307,12 +302,7 @@ func (d *ProtectedDialer) fdConn(_ context.Context, ip net.IP, port int, fd int)
 		return nil, errors.New("fdConn fd invalid")
 	}
 
-	defer func(file *os.File) {
-		err := file.Close()
-		if err != nil {
-
-		}
-	}(file)
+	defer file.Close()
 	//Closing conn does not affect file, and closing file does not affect conn.
 	conn, err := net.FileConn(file)
 	if err != nil {

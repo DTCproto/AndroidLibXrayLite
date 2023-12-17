@@ -29,7 +29,8 @@ import (
 )
 
 const (
-	v2Asset = "xray.location.asset"
+	v2Asset     = "xray.location.asset"
+	xudpBaseKey = "xray.xudp.basekey"
 )
 
 /*
@@ -78,7 +79,7 @@ func (v *V2RayPoint) RunLoop(prefIPv6 bool) (err error) {
 				// shutdown VPNService if server name can not reolved
 				if !v.dialer.IsVServerReady() {
 					log.Println("vServer cannot resolved, shutdown")
-					_ = v.StopLoop()
+					v.StopLoop()
 					v.SupportSet.Shutdown()
 				}
 
@@ -115,8 +116,8 @@ func (v *V2RayPoint) StopLoop() (err error) {
 	return
 }
 
-// QueryStats Delegate Function
-func (v *V2RayPoint) QueryStats(tag string, direct string) int64 {
+// Delegate Funcation
+func (v V2RayPoint) QueryStats(tag string, direct string) int64 {
 	if v.statsManager == nil {
 		return 0
 	}
@@ -129,7 +130,7 @@ func (v *V2RayPoint) QueryStats(tag string, direct string) int64 {
 
 func (v *V2RayPoint) shutdownInit() {
 	v.IsRunning = false
-	_ = v.Vpoint.Close()
+	v.Vpoint.Close()
 	v.Vpoint = nil
 	v.statsManager = nil
 }
@@ -171,7 +172,7 @@ func (v *V2RayPoint) MeasureDelay() (int64, error) {
 	go func() {
 		select {
 		case <-v.closeChan:
-			// cancel request if close called during measure
+			// cancel request if close called during meansure
 			cancel()
 		case <-ctx.Done():
 		}
@@ -181,14 +182,17 @@ func (v *V2RayPoint) MeasureDelay() (int64, error) {
 }
 
 // InitV2Env set v2 asset path
-func InitV2Env(envPath string) {
+func InitV2Env(envPath string, key string) {
 	//Initialize asset API, Since Raymond Will not let notify the asset location inside Process,
 	//We need to set location outside V2Ray
 	if len(envPath) > 0 {
-		_ = os.Setenv(v2Asset, envPath)
+		os.Setenv(v2Asset, envPath)
+	}
+	if len(key) > 0 {
+		os.Setenv(xudpBaseKey, key)
 	}
 
-	//Now we handle read, fallback to goMobile asset (apk assets)
+	//Now we handle read, fallback to gomobile asset (apk assets)
 	v2filesystem.NewFileReader = func(path string) (io.ReadCloser, error) {
 		if _, err := os.Stat(path); os.IsNotExist(err) {
 			_, file := filepath.Split(path)
@@ -198,7 +202,7 @@ func InitV2Env(envPath string) {
 	}
 }
 
-// TestConfig Delegate Function
+// Delegate Funcation
 func TestConfig(ConfigureFileContent string) error {
 	_, err := v2serial.LoadJSONConfig(strings.NewReader(ConfigureFileContent))
 	return err
@@ -221,16 +225,16 @@ func MeasureOutboundDelay(ConfigureFileContent string) (int64, error) {
 		return -1, err
 	}
 
-	_ = inst.Start()
+	inst.Start()
 	delay, err := measureInstDelay(context.Background(), inst)
-	_ = inst.Close()
+	inst.Close()
 	return delay, err
 }
 
 /*NewV2RayPoint new V2RayPoint*/
 func NewV2RayPoint(s V2RayVPNServiceSupportsSet, adns bool) *V2RayPoint {
 	// inject our own log writer
-	_ = v2applog.RegisterHandlerCreator(v2applog.LogType_Console,
+	v2applog.RegisterHandlerCreator(v2applog.LogType_Console,
 		func(lt v2applog.LogType,
 			options v2applog.HandlerCreatorOptions) (v2commlog.Handler, error) {
 			return v2commlog.NewLogger(createStdoutLogWriter()), nil
@@ -247,10 +251,10 @@ func NewV2RayPoint(s V2RayVPNServiceSupportsSet, adns bool) *V2RayPoint {
 
 /*
 CheckVersionX string
-This func will return libV2ray binding version and V2Ray version used.
+This func will return libv2ray binding version and V2Ray version used.
 */
 func CheckVersionX() string {
-	// var version = 24
+	// var version = 25
 	// return fmt.Sprintf("Lib v%d, Xray-core v%s", version, v2core.Version())
 	return fmt.Sprintf("Lib, Xray-core v%s", v2core.Version()+"@f7c20b8")
 }
@@ -286,7 +290,7 @@ func measureInstDelay(ctx context.Context, inst *v2core.Instance) (int64, error)
 	if resp.StatusCode != http.StatusNoContent {
 		return -1, fmt.Errorf("status != 204: %s", resp.Status)
 	}
-	_ = resp.Body.Close()
+	resp.Body.Close()
 	return time.Since(start).Milliseconds(), nil
 }
 
