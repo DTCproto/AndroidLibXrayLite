@@ -8,27 +8,21 @@ option java_multiple_files = true;
 
 import "common/serial/typed_message.proto";
 
-enum TransportProtocol {
-  TCP = 0;
-  UDP = 1;
-  MKCP = 2;
-  WebSocket = 3;
-  HTTP = 4;
-  DomainSocket = 5;
-}
-
 enum DomainStrategy {
   AS_IS = 0;
   USE_IP = 1;
   USE_IP4 = 2;
   USE_IP6 = 3;
+  USE_IP46 = 4;
+  USE_IP64 = 5;
+  FORCE_IP = 6;
+  FORCE_IP4 = 7;
+  FORCE_IP6 = 8;
+  FORCE_IP46 = 9;
+  FORCE_IP64 = 10;
 }
 
 message TransportConfig {
-  // Type of network that this settings supports.
-  // Deprecated. Use the string form below.
-  TransportProtocol protocol = 1 [ deprecated = true ];
-
   // Type of network that this settings supports.
   string protocol_name = 3;
 
@@ -37,9 +31,6 @@ message TransportConfig {
 }
 
 message StreamConfig {
-  // Effective network. Deprecated. Use the string form below.
-  TransportProtocol protocol = 1 [ deprecated = true ];
-
   // Effective network.
   string protocol_name = 5;
 
@@ -57,6 +48,13 @@ message StreamConfig {
 message ProxyConfig {
   string tag = 1;
   bool transportLayerProxy = 2;
+}
+
+message CustomSockopt {
+  string level = 1;
+  string opt = 2;
+  string value = 3;
+  string type = 4;
 }
 
 // SocketConfig is options to be applied on network sockets.
@@ -110,4 +108,8 @@ message SocketConfig {
   int32 tcp_max_seg = 17;
 
   bool tcp_no_delay = 18;
+
+  bool tcp_mptcp = 19;
+
+  repeated CustomSockopt customSockopt = 20;
 }
