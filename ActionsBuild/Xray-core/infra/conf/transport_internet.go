@@ -165,11 +165,13 @@ func (c *WebSocketConfig) Build() (proto.Message, error) {
 	}
 	// Priority (client): host > serverName > address
 	for k, v := range c.Headers {
-		errors.PrintDeprecatedFeatureWarning(`"host" in "headers"`, `independent "host"`)
-		if c.Host == "" {
-			c.Host = v
+		if strings.ToLower(k) == "host" {
+			errors.PrintDeprecatedFeatureWarning(`"host" in "headers"`, `independent "host"`)
+			if c.Host == "" {
+				c.Host = v
+			}
+			delete(c.Headers, k)
 		}
-		delete(c.Headers, k)
 	}
 	config := &websocket.Config{
 		Path:                path,
@@ -238,8 +240,8 @@ type XmuxConfig struct {
 	MaxConcurrency   Int32Range `json:"maxConcurrency"`
 	MaxConnections   Int32Range `json:"maxConnections"`
 	CMaxReuseTimes   Int32Range `json:"cMaxReuseTimes"`
-	CMaxLifetimeMs   Int32Range `json:"cMaxLifetimeMs"`
 	HMaxRequestTimes Int32Range `json:"hMaxRequestTimes"`
+	HMaxReusableSecs Int32Range `json:"hMaxReusableSecs"`
 	HKeepAlivePeriod int64      `json:"hKeepAlivePeriod"`
 }
 
@@ -260,7 +262,6 @@ func (c *SplitHTTPConfig) Build() (proto.Message, error) {
 		extra.Host = c.Host
 		extra.Path = c.Path
 		extra.Mode = c.Mode
-		extra.Extra = c.Extra
 		c = &extra
 	}
 
@@ -285,10 +286,10 @@ func (c *SplitHTTPConfig) Build() (proto.Message, error) {
 	if c.Xmux == (XmuxConfig{}) {
 		c.Xmux.MaxConcurrency.From = 16
 		c.Xmux.MaxConcurrency.To = 32
-		c.Xmux.CMaxReuseTimes.From = 64
-		c.Xmux.CMaxReuseTimes.To = 128
-		c.Xmux.HMaxRequestTimes.From = 800
+		c.Xmux.HMaxRequestTimes.From = 600
 		c.Xmux.HMaxRequestTimes.To = 900
+		c.Xmux.HMaxReusableSecs.From = 1800
+		c.Xmux.HMaxReusableSecs.To = 3000
 	}
 
 	config := &splithttp.Config{
@@ -306,8 +307,8 @@ func (c *SplitHTTPConfig) Build() (proto.Message, error) {
 			MaxConcurrency:   newRangeConfig(c.Xmux.MaxConcurrency),
 			MaxConnections:   newRangeConfig(c.Xmux.MaxConnections),
 			CMaxReuseTimes:   newRangeConfig(c.Xmux.CMaxReuseTimes),
-			CMaxLifetimeMs:   newRangeConfig(c.Xmux.CMaxLifetimeMs),
 			HMaxRequestTimes: newRangeConfig(c.Xmux.HMaxRequestTimes),
+			HMaxReusableSecs: newRangeConfig(c.Xmux.HMaxReusableSecs),
 			HKeepAlivePeriod: c.Xmux.HKeepAlivePeriod,
 		},
 	}
@@ -315,9 +316,6 @@ func (c *SplitHTTPConfig) Build() (proto.Message, error) {
 	if c.DownloadSettings != nil {
 		if c.Mode == "stream-one" {
 			return nil, errors.New(`Can not use "downloadSettings" in "stream-one" mode.`)
-		}
-		if c.Extra != nil {
-			c.DownloadSettings.SocketSettings = nil
 		}
 		var err error
 		if config.DownloadSettings, err = c.DownloadSettings.Build(); err != nil {
@@ -436,7 +434,7 @@ func (c *TLSConfig) Build() (proto.Message, error) {
 	config.MaxVersion = c.MaxVersion
 	config.CipherSuites = c.CipherSuites
 	config.Fingerprint = strings.ToLower(c.Fingerprint)
-	if config.Fingerprint != "" && tls.GetFingerprint(config.Fingerprint) == nil {
+	if config.Fingerprint != "unsafe" && tls.GetFingerprint(config.Fingerprint) == nil {
 		return nil, errors.New(`unknown fingerprint: `, config.Fingerprint)
 	}
 	config.RejectUnknownSni = c.RejectUnknownSNI
@@ -582,14 +580,12 @@ func (c *REALITYConfig) Build() (proto.Message, error) {
 		config.ServerNames = c.ServerNames
 		config.MaxTimeDiff = c.MaxTimeDiff
 	} else {
-		if c.Fingerprint == "" {
-			return nil, errors.New(`empty "fingerprint"`)
-		}
-		if config.Fingerprint = strings.ToLower(c.Fingerprint); tls.GetFingerprint(config.Fingerprint) == nil {
-			return nil, errors.New(`unknown "fingerprint": `, config.Fingerprint)
-		}
-		if config.Fingerprint == "hellogolang" {
+		config.Fingerprint = strings.ToLower(c.Fingerprint)
+		if config.Fingerprint == "unsafe" || config.Fingerprint == "hellogolang" {
 			return nil, errors.New(`invalid "fingerprint": `, config.Fingerprint)
+		}
+		if tls.GetFingerprint(config.Fingerprint) == nil {
+			return nil, errors.New(`unknown "fingerprint": `, config.Fingerprint)
 		}
 		if len(c.ServerNames) != 0 {
 			return nil, errors.New(`non-empty "serverNames", please use "serverName" instead`)
@@ -689,7 +685,7 @@ type SocketConfig struct {
 	TCPCongestion        string                 `json:"tcpCongestion"`
 	TCPWindowClamp       int32                  `json:"tcpWindowClamp"`
 	TCPMaxSeg            int32                  `json:"tcpMaxSeg"`
-	TcpNoDelay           bool                   `json:"tcpNoDelay"`
+	Penetrate            bool                   `json:"penetrate"`
 	TCPUserTimeout       int32                  `json:"tcpUserTimeout"`
 	V6only               bool                   `json:"v6only"`
 	Interface            string                 `json:"interface"`
@@ -776,7 +772,7 @@ func (c *SocketConfig) Build() (*internet.SocketConfig, error) {
 		TcpCongestion:        c.TCPCongestion,
 		TcpWindowClamp:       c.TCPWindowClamp,
 		TcpMaxSeg:            c.TCPMaxSeg,
-		TcpNoDelay:           c.TcpNoDelay,
+		Penetrate:            c.Penetrate,
 		TcpUserTimeout:       c.TCPUserTimeout,
 		V6Only:               c.V6only,
 		Interface:            c.Interface,
