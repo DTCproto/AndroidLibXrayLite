@@ -117,8 +117,16 @@ golang.zx2c4.com/wintun v0.0.0-20230126152724-0fa3db229ce2 h1:B82qJJgjvYKsXS9jeu
 golang.zx2c4.com/wintun v0.0.0-20230126152724-0fa3db229ce2/go.mod h1:deeaetjYA+DHMHg+sMSMI58GrEteJUUzzw7en6TJQcI=
 golang.zx2c4.com/wireguard v0.0.0-20231211153847-12269c276173 h1:/jFs0duh4rdb8uIfPMv78iAJGcPKDeqAFnaLBropIC4=
 golang.zx2c4.com/wireguard v0.0.0-20231211153847-12269c276173/go.mod h1:tkCQ4FQXmpAgYVh++1cq16/dH4QJtmvpRv19DWGAHSA=
+google.golang.org/genproto v0.0.0-20230110181048-76db0878b65f h1:BWUVssLB0HVOSY78gIdvk1dTVYtT1y8SBWtPYuTJ/6w=
+google.golang.org/genproto v0.0.0-20230110181048-76db0878b65f/go.mod h1:RGgjbofJ8xD9Sq1VVhDM1Vok1vRONV+rg+CjzG4SZKM=
+google.golang.org/genproto v0.0.0-20250414145226-207652e42e2e h1:mYHFv3iX85YMwhGSaZS4xpkM8WQDmJUovz7yqsFrwDk=
+google.golang.org/genproto v0.0.0-20250414145226-207652e42e2e/go.mod h1:TQT1YpH/rlDCS5+EuFaqPIMqDfuNMFR1OI8EcZJGgAk=
+google.golang.org/genproto v0.0.0-20250422160041-2d3770c4ea7f h1:iZiXS7qm4saaCcdK7S/i1Qx9ZHO2oa16HQqwYc1tPKY=
+google.golang.org/genproto v0.0.0-20250422160041-2d3770c4ea7f/go.mod h1:Cej/8iHf9mPl71o/a+R1rrvSFrAAVCUFX9s/sbNttBc=
 google.golang.org/genproto/googleapis/rpc v0.0.0-20250414145226-207652e42e2e h1:ztQaXfzEXTmCBvbtWYRhJxW+0iJcz2qXfd38/e9l7bA=
 google.golang.org/genproto/googleapis/rpc v0.0.0-20250414145226-207652e42e2e/go.mod h1:qQ0YXyHHx3XkvlzUtpXDkS29lDSafHMZBAZDc03LQ3A=
+google.golang.org/genproto/googleapis/rpc v0.0.0-20250422160041-2d3770c4ea7f h1:N/PrbTw4kdkqNRzVfWPrBekzLuarFREcbFOiOLkXon4=
+google.golang.org/genproto/googleapis/rpc v0.0.0-20250422160041-2d3770c4ea7f/go.mod h1:qQ0YXyHHx3XkvlzUtpXDkS29lDSafHMZBAZDc03LQ3A=
 google.golang.org/grpc v1.72.0 h1:S7UkcVa60b5AAQTaO6ZKamFp1zMZSU0fGDK2WZLbBnM=
 google.golang.org/grpc v1.72.0/go.mod h1:wH5Aktxcg25y1I3w7H69nHfXdOG3UiadoBtjh3izSDM=
 google.golang.org/protobuf v1.36.6 h1:z1NpPI8ku2WgiWnf+t9wTPsn6eP1L7ksHUlkfLvd9xY=
