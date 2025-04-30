@@ -1,0 +1,4 @@
+[submodule "ActionsBuild/Xray-core"]
+	path = ActionsBuild/Xray-core
+	url = https://github.com/XTLS/Xray-core.git
+	branch = main
