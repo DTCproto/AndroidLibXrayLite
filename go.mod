@@ -3,7 +3,7 @@ module github.com/DTCproto/AndroidLibXrayLite
 go 1.24
 
 require (
-	github.com/xtls/xray-core v1.250726.0
+	github.com/xtls/xray-core v1.250803.0
 	golang.org/x/mobile v0.0.0-20250408133729-978277e7eaf7
 	google.golang.org/genproto v0.0.0-20250422160041-2d3770c4ea7f
 )
