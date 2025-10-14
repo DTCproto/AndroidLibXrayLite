@@ -3,7 +3,7 @@ module github.com/DTCproto/AndroidLibXrayLite
 go 1.25
 
 require (
-	github.com/xtls/xray-core v1.250910.1-0.20250910114707-3edfb0e33557
+	github.com/xtls/xray-core v1.250911.1-0.20251014160811-1762d6c8cc87
 	golang.org/x/mobile v0.0.0-20250813145510-f12310a0cfd9
 	google.golang.org/genproto v0.0.0-20250707201910-8d1bb00bc6a7
 )
@@ -23,8 +23,8 @@ require (
 	github.com/pelletier/go-toml v1.9.5 // indirect
 	github.com/pires/go-proxyproto v0.8.1 // indirect
 	github.com/quic-go/qpack v0.5.1 // indirect
-	github.com/quic-go/quic-go v0.54.0 // indirect
-	github.com/refraction-networking/utls v1.8.0 // indirect
+	github.com/quic-go/quic-go v0.55.0 // indirect
+	github.com/refraction-networking/utls v1.8.1 // indirect
 	github.com/riobard/go-bloom v0.0.0-20200614022211-cdc8013cb5b3 // indirect
 	github.com/rogpeppe/go-internal v1.14.1 // indirect
 	github.com/sagernet/sing v0.5.1 // indirect
@@ -34,7 +34,6 @@ require (
 	github.com/vishvananda/netlink v1.3.1 // indirect
 	github.com/vishvananda/netns v0.0.5 // indirect
 	github.com/xtls/reality v0.0.0-20250904214705-431b6ff8c67c // indirect
-	go.uber.org/mock v0.5.0 // indirect
 	go4.org/netipx v0.0.0-20231129151722-fdeea329fbba // indirect
 	golang.org/x/crypto v0.42.0 // indirect
 	golang.org/x/mod v0.27.0 // indirect
@@ -47,8 +46,8 @@ require (
 	golang.zx2c4.com/wintun v0.0.0-20230126152724-0fa3db229ce2 // indirect
 	golang.zx2c4.com/wireguard v0.0.0-20231211153847-12269c276173 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20250707201910-8d1bb00bc6a7 // indirect
-	google.golang.org/grpc v1.75.0 // indirect
-	google.golang.org/protobuf v1.36.9 // indirect
+	google.golang.org/grpc v1.75.1 // indirect
+	google.golang.org/protobuf v1.36.10 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gvisor.dev/gvisor v0.0.0-20250428193742-2d800c3129d5 // indirect
 	lukechampine.com/blake3 v1.4.1 // indirect
