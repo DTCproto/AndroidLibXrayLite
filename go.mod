@@ -3,9 +3,9 @@ module github.com/DTCproto/AndroidLibXrayLite
 go 1.25
 
 require (
-	github.com/xtls/xray-core v1.250911.1-0.20251014160811-1762d6c8cc87
-	golang.org/x/mobile v0.0.0-20250813145510-f12310a0cfd9
-	google.golang.org/genproto v0.0.0-20250707201910-8d1bb00bc6a7
+	github.com/xtls/xray-core v1.251015.0
+	golang.org/x/mobile v0.0.0-20251009145931-8baca8bf4eeb
+	google.golang.org/genproto v0.0.0-20250804133106-a7a43d27e69b
 )
 
 require (
@@ -33,20 +33,20 @@ require (
 	github.com/v2fly/ss-bloomring v0.0.0-20210312155135-28617310f63e // indirect
 	github.com/vishvananda/netlink v1.3.1 // indirect
 	github.com/vishvananda/netns v0.0.5 // indirect
-	github.com/xtls/reality v0.0.0-20250904214705-431b6ff8c67c // indirect
+	github.com/xtls/reality v0.0.0-20251014195629-e4eec4520535 // indirect
 	go4.org/netipx v0.0.0-20231129151722-fdeea329fbba // indirect
-	golang.org/x/crypto v0.42.0 // indirect
-	golang.org/x/mod v0.27.0 // indirect
-	golang.org/x/net v0.44.0 // indirect
+	golang.org/x/crypto v0.43.0 // indirect
+	golang.org/x/mod v0.29.0 // indirect
+	golang.org/x/net v0.46.0 // indirect
 	golang.org/x/sync v0.17.0 // indirect
-	golang.org/x/sys v0.36.0 // indirect
-	golang.org/x/text v0.29.0 // indirect
+	golang.org/x/sys v0.37.0 // indirect
+	golang.org/x/text v0.30.0 // indirect
 	golang.org/x/time v0.7.0 // indirect
-	golang.org/x/tools v0.36.0 // indirect
+	golang.org/x/tools v0.38.0 // indirect
 	golang.zx2c4.com/wintun v0.0.0-20230126152724-0fa3db229ce2 // indirect
 	golang.zx2c4.com/wireguard v0.0.0-20231211153847-12269c276173 // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20250707201910-8d1bb00bc6a7 // indirect
-	google.golang.org/grpc v1.75.1 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20250804133106-a7a43d27e69b // indirect
+	google.golang.org/grpc v1.76.0 // indirect
 	google.golang.org/protobuf v1.36.10 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gvisor.dev/gvisor v0.0.0-20250428193742-2d800c3129d5 // indirect
