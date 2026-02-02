@@ -81,6 +81,8 @@ github.com/xtls/xray-core v1.260118.0 h1:RJtgIbQ3ykFRcH1CKeoCgQ5WvhsMFu+lnvLF/fF
 github.com/xtls/xray-core v1.260118.0/go.mod h1:A5k7TXE2KfAjT8dAq6Ir4mMP1q0OTh+8VMmUdqWMQpg=
 github.com/xtls/xray-core v1.260123.0 h1:FCaIDJ1ThRaG9b8TpqNNq3hIcPTN+24vPWQY3s9lSXg=
 github.com/xtls/xray-core v1.260123.0/go.mod h1:xfHDVg861cIAR5WjwEVKHr/G/HMHSGSC9j3LZmt6sKM=
+github.com/xtls/xray-core v1.260202.0 h1:dYduYxGlkn/krSQJbmksbTtCdRe8OFb3YwpuXXEJG5c=
+github.com/xtls/xray-core v1.260202.0/go.mod h1:cxzYFZrxu1B1NtPjHsqv4UzgDvRA71mV4rXYH4KtO7Q=
 go.opentelemetry.io/auto/sdk v1.2.1 h1:jXsnJ4Lmnqd11kwkBV2LgLoFMZKizbCi5fNZ/ipaZ64=
 go.opentelemetry.io/auto/sdk v1.2.1/go.mod h1:KRTj+aOaElaLi+wW1kO/DZRXwkF4C5xPbEe3ZiIhN7Y=
 go.opentelemetry.io/otel v1.38.0 h1:RkfdswUDRimDg0m2Az18RKOsnI8UDzppJAtj01/Ymk8=
@@ -103,6 +105,8 @@ golang.org/x/exp v0.0.0-20240506185415-9bf2ced13842 h1:vr/HnozRka3pE4EsMEg1lgkXJ
 golang.org/x/exp v0.0.0-20240506185415-9bf2ced13842/go.mod h1:XtvwrStGgqGPLc4cjQfWqZHG1YFdYs6swckp8vpsjnc=
 golang.org/x/mobile v0.0.0-20260112195712-5b9ecdfb8721 h1:nzIKPiUdGHmOrf0Zj4ww4DB65fsHcSL4+oibimRnI5I=
 golang.org/x/mobile v0.0.0-20260112195712-5b9ecdfb8721/go.mod h1:yHJY0EGzMJ0i5ONrrhdpDSSnoyres5LO7D2hSIbJJ5I=
+golang.org/x/mobile v0.0.0-20260120165949-40bd9ace6ce4 h1:C3JuLOLhdaE75vk5m7u18NvZciRk+lnO34xcXl3NPTU=
+golang.org/x/mobile v0.0.0-20260120165949-40bd9ace6ce4/go.mod h1:yHJY0EGzMJ0i5ONrrhdpDSSnoyres5LO7D2hSIbJJ5I=
 golang.org/x/mod v0.32.0 h1:9F4d3PHLljb6x//jOyokMv3eX+YDeepZSEo3mFJy93c=
 golang.org/x/mod v0.32.0/go.mod h1:SgipZ/3h2Ci89DlEtEXWUk/HteuRin+HHhN+WbNhguU=
 golang.org/x/net v0.49.0 h1:eeHFmOGUTtaaPSGNmjBKpbng9MulQsJURQUAfUwY++o=
@@ -145,5 +149,6 @@ gopkg.in/yaml.v3 v3.0.1 h1:fxVm/GzAzEWqLHuvctI91KS9hhNmmWOoWu0XTYJS7CA=
 gopkg.in/yaml.v3 v3.0.1/go.mod h1:K4uyk7z7BCEPqu6E+C64Yfv1cQ7kz7rIZviUmN+EgEM=
 gvisor.dev/gvisor v0.0.0-20260109181451-4be7c433dae2 h1:fr6L00yGG2RP5NMea6njWpdC+bm+cMdFClrSpaicp1c=
 gvisor.dev/gvisor v0.0.0-20260109181451-4be7c433dae2/go.mod h1:QkHjoMIBaYtpVufgwv3keYAbln78mBoCuShZrPrer1Q=
+gvisor.dev/gvisor v0.0.0-20260122175437-89a5d21be8f0 h1:Lk6hARj5UPY47dBep70OD/TIMwikJ5fGUGX0Rm3Xigk=
 lukechampine.com/blake3 v1.4.1 h1:I3Smz7gso8w4/TunLKec6K2fn+kyKtDxr/xcQEN84Wg=
 lukechampine.com/blake3 v1.4.1/go.mod h1:QFosUxmjB8mnrWFSNwKmvxHpfY72bmD2tQ0kBMM3kwo=
