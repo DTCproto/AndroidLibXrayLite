@@ -42,6 +42,7 @@ github.com/pelletier/go-toml v1.9.5 h1:4yBQzkHv+7BHq2PQUZF3Mx0IYxG7LsP222s7Agd3v
 github.com/pelletier/go-toml v1.9.5/go.mod h1:u1nR/EPcESfeI/szUZKdtJ0xRNbUoANCkoOuaOx1Y+c=
 github.com/pires/go-proxyproto v0.11.0 h1:gUQpS85X/VJMdUsYyEgyn59uLJvGqPhJV5YvG68wXH4=
 github.com/pires/go-proxyproto v0.11.0/go.mod h1:ZKAAyp3cgy5Y5Mo4n9AlScrkCZwUy0g3Jf+slqQVcuU=
+github.com/pires/go-proxyproto v0.12.0 h1:TTCxD66dU898tahivkqc3hoceZp7P44FnorWyo9d5vM=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/quic-go/qpack v0.6.0 h1:g7W+BMYynC1LbYLSqRt8PBg5Tgwxn214ZZR34VIOjz8=
@@ -66,6 +67,8 @@ github.com/xtls/xray-core v1.260327.1-0.20260415124019-678004555041 h1:l2xAk2aKZ
 github.com/xtls/xray-core v1.260327.1-0.20260415124019-678004555041/go.mod h1:nFFTSnhpW0qTKUOeABKy3XAxdZ9WRuyhP4dEtPy1Qps=
 github.com/xtls/xray-core v1.260327.1-0.20260415235634-c5edc122b70e h1:Ndk6i7q2rExWGsXzp1KsUvqkY4Id+NgpGr73Sg/x4lM=
 github.com/xtls/xray-core v1.260327.1-0.20260415235634-c5edc122b70e/go.mod h1:nFFTSnhpW0qTKUOeABKy3XAxdZ9WRuyhP4dEtPy1Qps=
+github.com/xtls/xray-core v1.260327.1-0.20260417230405-b4650360d6a0 h1:9cf2NebR+d4bytVztd5CM3PAfJyfJT4WHucjCYrLv+g=
+github.com/xtls/xray-core v1.260327.1-0.20260417230405-b4650360d6a0/go.mod h1:DowU2gGzHZ9NB9kG2ykRx8SQ09KpSyNjLrdc8XPHVm8=
 go.opentelemetry.io/auto/sdk v1.2.1 h1:jXsnJ4Lmnqd11kwkBV2LgLoFMZKizbCi5fNZ/ipaZ64=
 go.opentelemetry.io/auto/sdk v1.2.1/go.mod h1:KRTj+aOaElaLi+wW1kO/DZRXwkF4C5xPbEe3ZiIhN7Y=
 go.opentelemetry.io/otel v1.39.0 h1:8yPrr/S0ND9QEfTfdP9V+SiwT4E0G7Y5MO7p85nis48=
