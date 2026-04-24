@@ -28,10 +28,13 @@ download_dat() {
     curl -sL https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat -o "$DATADIR/geosite.dat"
 
     echo "Downloading geoip-only-cn-private.dat..."
-    curl -sL https://raw.githubusercontent.com/Loyalsoldier/geoip/release/geoip-only-cn-private.dat -o "$DATADIR/geoip-only-cn-private.dat"
+    curl -sL https://github.com/Loyalsoldier/geoip/releases/latest/download/geoip-only-cn-private.dat -o "$DATADIR/geoip-only-cn-private.dat"
 
     echo "Downloading dlc.dat..."
     curl -sL https://github.com/v2fly/domain-list-community/releases/latest/download/dlc.dat -o "$DATADIR/dlc.dat"
+
+    echo "Downloading additional.dat..."
+    curl -sL https://github.com/DTCproto/geo-rules/releases/latest/download/additional.dat -o "$DATADIR/additional.dat"
 }
 
 # Main execution logic
