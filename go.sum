@@ -69,6 +69,8 @@ github.com/xtls/xray-core v1.260327.1-0.20260415235634-c5edc122b70e h1:Ndk6i7q2r
 github.com/xtls/xray-core v1.260327.1-0.20260415235634-c5edc122b70e/go.mod h1:nFFTSnhpW0qTKUOeABKy3XAxdZ9WRuyhP4dEtPy1Qps=
 github.com/xtls/xray-core v1.260327.1-0.20260417230405-b4650360d6a0 h1:9cf2NebR+d4bytVztd5CM3PAfJyfJT4WHucjCYrLv+g=
 github.com/xtls/xray-core v1.260327.1-0.20260417230405-b4650360d6a0/go.mod h1:DowU2gGzHZ9NB9kG2ykRx8SQ09KpSyNjLrdc8XPHVm8=
+github.com/xtls/xray-core v1.260327.1-0.20260425231635-b4f08981becb h1:yln5Y7EwfwQlOUdVTx1k/rJzmWJOqdYCWHm3ImT9fZo=
+github.com/xtls/xray-core v1.260327.1-0.20260425231635-b4f08981becb/go.mod h1:LoG6Y9ysn3BULSTrJ7z545FbqkWRKon4k+Wprls9k4s=
 go.opentelemetry.io/auto/sdk v1.2.1 h1:jXsnJ4Lmnqd11kwkBV2LgLoFMZKizbCi5fNZ/ipaZ64=
 go.opentelemetry.io/auto/sdk v1.2.1/go.mod h1:KRTj+aOaElaLi+wW1kO/DZRXwkF4C5xPbEe3ZiIhN7Y=
 go.opentelemetry.io/otel v1.39.0 h1:8yPrr/S0ND9QEfTfdP9V+SiwT4E0G7Y5MO7p85nis48=
@@ -113,6 +115,7 @@ golang.zx2c4.com/wireguard v0.0.0-20250521234502-f333402bd9cb h1:whnFRlWMcXI9d+Z
 golang.zx2c4.com/wireguard v0.0.0-20250521234502-f333402bd9cb/go.mod h1:rpwXGsirqLqN2L0JDJQlwOboGHmptD5ZD6T2VmcqhTw=
 golang.zx2c4.com/wireguard/windows v0.6.1 h1:XMaKojH1Hs/raMrmnir4n35nTvzvWj7NmSYzHn2F4qU=
 golang.zx2c4.com/wireguard/windows v0.6.1/go.mod h1:04aqInu5GYuTFvMuDw/rKBAF7mHrltW/3rekpfbbZDM=
+golang.zx2c4.com/wireguard/windows v1.0.1 h1:eOxiDVbywPC+ZQqvdCK7x+ZwWXKbYv50TtH8ysFIbw8=
 gonum.org/v1/gonum v0.17.0 h1:VbpOemQlsSMrYmn7T2OUvQ4dqxQXU+ouZFQsZOx50z4=
 gonum.org/v1/gonum v0.17.0/go.mod h1:El3tOrEuMpv2UdMrbNlKEh9vd86bmQ6vqIcDwxEOc1E=
 google.golang.org/genproto v0.0.0-20260120221211-b8f7ae30c516 h1:JWDYM5UaYOOCf35C9PZ8f6+JWlUWwS5J66LYZTxuHUQ=
