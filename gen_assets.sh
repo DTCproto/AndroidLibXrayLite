@@ -33,8 +33,11 @@ download_dat() {
     echo "Downloading dlc.dat..."
     curl -sL https://github.com/v2fly/domain-list-community/releases/latest/download/dlc.dat -o "$DATADIR/dlc.dat"
 
-    echo "Downloading additional.dat..."
-    curl -sL https://github.com/DTCproto/geo-rules/releases/latest/download/additional.dat -o "$DATADIR/additional.dat"
+    echo "Downloading geosite-additional.dat..."
+    curl -sL https://github.com/DTCproto/geo-rules/releases/latest/download/geosite-additional.dat -o "$DATADIR/geosite-additional.dat"
+
+    echo "Downloading geoip-operator.dat..."
+    curl -sL https://github.com/DTCproto/geo-rules/releases/latest/download/geoip-operator.dat -o "$DATADIR/geoip-operator.dat"
 }
 
 # Main execution logic
