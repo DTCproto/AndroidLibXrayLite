@@ -84,6 +84,8 @@ github.com/xtls/xray-core v1.260327.1-0.20260627131803-45cf2898ab12 h1:0RZBYuLmk
 github.com/xtls/xray-core v1.260327.1-0.20260627131803-45cf2898ab12/go.mod h1:5J11wfaLGhI6HNOi90zVI6E87c1ykA8grPfUeHZYbhA=
 github.com/xtls/xray-core v1.260327.1-0.20260717222851-6e3322d21914 h1:0CsKmqovoq9ozr7kfcfbuqCPMY9RDJcW9Q2M4kcGEEE=
 github.com/xtls/xray-core v1.260327.1-0.20260717222851-6e3322d21914/go.mod h1:wukQoBGnQ6GaLTGuKwv8rCTgf80QxPj+6iznDZHQEWo=
+github.com/xtls/xray-core v1.260327.1-0.20260728075948-5ca6f4b7d4dc h1:fkOkmgHWbF2Q8MdV9VxrsyxRz4OndcrUXUkh1ANBTg0=
+github.com/xtls/xray-core v1.260327.1-0.20260728075948-5ca6f4b7d4dc/go.mod h1:wukQoBGnQ6GaLTGuKwv8rCTgf80QxPj+6iznDZHQEWo=
 go.opentelemetry.io/auto/sdk v1.2.1 h1:jXsnJ4Lmnqd11kwkBV2LgLoFMZKizbCi5fNZ/ipaZ64=
 go.opentelemetry.io/auto/sdk v1.2.1/go.mod h1:KRTj+aOaElaLi+wW1kO/DZRXwkF4C5xPbEe3ZiIhN7Y=
 go.opentelemetry.io/otel v1.43.0 h1:mYIM03dnh5zfN7HautFE4ieIig9amkNANT+xcVxAj9I=
